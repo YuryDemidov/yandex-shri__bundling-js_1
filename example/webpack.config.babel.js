@@ -7,5 +7,11 @@ export default {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  plugins: [new UnusedFilesWebpackPlugin({})]
+  plugins: [
+    new UnusedFilesWebpackPlugin({
+      excludePaths: ['log'],
+      excludePatterns: [/.*excluded-by-pattern.*/],
+      failOnUnused: true
+    })
+  ]
 }
