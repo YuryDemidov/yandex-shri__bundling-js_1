@@ -5,7 +5,7 @@ import { UnusedFilesWebpackPlugin } from '../src';
 
 const EXPECTED_OUTPUT_FILES = [
   `components/component3/index.js`,
-  `log/log.txt`,
+  `log/log.json`,
   `unused-excluded-by-pattern.js`
 ];
 
