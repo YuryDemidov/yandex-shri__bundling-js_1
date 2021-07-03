@@ -50,13 +50,13 @@ ${unusedFiles.join(`\n`)}`
   }
 
   async getUsedFiles(compilation) {
-    const usedFiles = [];
+    const usedFiles = new Set();
     const dependencies = [...compilation.fileDependencies];
 
     for (let i = 0; i < dependencies.length; i++) {
       const fileStats = await stat(dependencies[i]);
       if (!fileStats.isDirectory()) {
-        usedFiles.push(dependencies[i]);
+        usedFiles.add(dependencies[i]);
       }
     }
 
@@ -67,7 +67,7 @@ ${unusedFiles.join(`\n`)}`
     const unusedFiles = [];
 
     for (let i = 0; i < allProjectFiles.length; i++) {
-      if (usedFiles.indexOf(allProjectFiles[i]) === -1) {
+      if (!usedFiles.has(allProjectFiles[i])) {
         unusedFiles.push(path.relative(compiler.context, allProjectFiles[i]));
       }
     }
