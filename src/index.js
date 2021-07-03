@@ -9,7 +9,7 @@ export class UnusedFilesWebpackPlugin {
     validate(SCHEMA, options);
 
     this.options = {
-      ...options,
+      failOnUnused: options.failOnUnused || false,
       excludePaths: [...DEFAULT_EXCLUDED_PATHS, ...(options.excludePaths || [])],
       excludePatterns: [...DEFAULT_EXCLUDED_PATTERNS, ...(options.excludePatterns || [])]
     };
