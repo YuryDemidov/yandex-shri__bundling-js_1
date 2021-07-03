@@ -4,7 +4,7 @@ import { validate } from 'schema-utils';
 import { DEFAULT_EXCLUDED_PATHS, DEFAULT_EXCLUDED_PATTERNS, SCHEMA } from './config';
 import getAllFiles from './utils/getAllFiles';
 
-export default class UnusedFilesWebpackPlugin {
+export class UnusedFilesWebpackPlugin {
   constructor(options= {}) {
     validate(SCHEMA, options);
 
