@@ -1,0 +1,19 @@
+{
+  "name": "unused-files-webpack-plugin",
+  "version": "1.0.0",
+  "description": "Homework for Yandex frontend school. Part 6. Code bundling.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Iurii Demidov",
+  "license": "MIT",
+  "dependencies": {
+    "schema-utils": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
