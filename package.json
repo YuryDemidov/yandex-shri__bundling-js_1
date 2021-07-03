@@ -4,8 +4,8 @@
   "description": "Homework for Yandex frontend school. Part 6. Code bundling.",
   "main": "src/index.js",
   "scripts": {
-    "build": "babel src -d dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf dist && babel src -d dist --ignore src/test.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Iurii Demidov",
@@ -16,6 +16,9 @@
   "devDependencies": {
     "@babel/cli": "^7.14.5",
     "@babel/plugin-transform-runtime": "^7.14.5",
-    "@babel/preset-env": "^7.14.7"
+    "@babel/preset-env": "^7.14.7",
+    "@jest/globals": "^27.0.6",
+    "jest": "^27.0.6",
+    "webpack": "^5.42.0"
   }
 }
