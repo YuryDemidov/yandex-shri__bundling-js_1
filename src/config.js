@@ -15,7 +15,7 @@ export const SCHEMA = {
     excludePatterns: {
       type: `array`,
       items: {
-        instanceOf: `RegExp`
+        instanceof: `RegExp`
       }
     }
   }

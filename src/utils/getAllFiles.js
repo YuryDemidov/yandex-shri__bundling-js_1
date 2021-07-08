@@ -18,9 +18,6 @@ export default async function getAllFiles(dirPath, excludedPaths, excludedPatter
         filesArray = await getAllFiles(filePath, excludedPaths, excludedPatterns, filesArray);
       } else {
         const isFileExcluded = excludedPatterns.some(regexp => {
-          if (!regexp.test) {
-            throw new Error(`1`);
-          }
           return regexp.test(path.relative(dirPath, filePath));
         });
 
@@ -32,10 +29,6 @@ export default async function getAllFiles(dirPath, excludedPaths, excludedPatter
 
     return filesArray;
   } catch (error) {
-    if (error.message === `1`) {
-      throw new Error(`UnusedFilesWebpackPlugin. Invalid options object. UnusedFilesWebpackPlugin has been initialized using an options object that does not match the API schema.
-      - options.excludedPatterns should be an array of RegExps`)
-    }
     console.error(error);
   }
 }
