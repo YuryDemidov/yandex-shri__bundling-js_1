@@ -35,12 +35,12 @@ npm run build:prod
 
 ## Использование плагина
 
-Установку плагина можно сэмулировать, импортировав его из `src/index.js` или `dist/index.js` (после сборки)
+Установку плагина можно сэмулировать, импортировав его из `dist/index.js` (после сборки кода плагина)
 
 ### Для конфигов вебпака с синтаксисом ES модулей (`webpack.config.babel.js`)
 
 ```js
-import { UnusedFilesWebpackPlugin } from 'unused-files-webpack-plugin'; // from 'src/' or from 'dist/'
+import { UnusedFilesWebpackPlugin } from 'unused-files-webpack-plugin'; // from 'dist/'
 
 export default {
   // ...
@@ -54,7 +54,7 @@ export default {
 ### Для конфигов вебпака с синтаксисом CommonJS модулей (`webpack.config.js`)
 
 ```js
-const { UnusedFilesWebpackPlugin } = require('unused-files-webpack-plugin'); // require('src/') or require('dist/')
+const { UnusedFilesWebpackPlugin } = require('unused-files-webpack-plugin'); // require('dist/')
 
 module.exports = {
   // ...
@@ -71,7 +71,7 @@ module.exports = {
 
 Массив строк - пути, которые не будут рассматриваться как файлы проекта. Файлы из них не будут выведены в отчёте
 
-По умолчанию игнорируются `node_modules`, `dist`, `build`
+По умолчанию игнорируются `node_modules`, `dist`, `build`.
 
 Пример:
 
@@ -103,7 +103,7 @@ new UnusedFilesWebpackPlugin({
 
 Булево значение, определяющее нужно ли выбрасывать ошибку при обнаружении неиспользуемых файлов.
 
-По умолчанию `false` - будет выводиться warning
+По умолчанию `false` - будет выводиться warning.
 
 Пример:
 
