@@ -17,14 +17,23 @@ export const SCHEMA = {
       items: {
         instanceof: `RegExp`
       }
+    },
+    logFile: {
+      anyOf: [
+        { type: `string` },
+        { type: `boolean` }
+      ]
     }
   }
 }
 
+export const DEFAULT_LOG_FILE = 'unused.json';
+
 export const DEFAULT_EXCLUDED_PATHS = [
   `node_modules`,
   `dist`,
-  `build`
+  `build`,
+  DEFAULT_LOG_FILE
 ];
 
 export const DEFAULT_EXCLUDED_PATTERNS = [

@@ -1,7 +1,7 @@
 import path from 'path';
-import { stat } from 'fs/promises';
+import { stat, writeFile } from 'fs/promises';
 import { validate } from 'schema-utils';
-import { DEFAULT_EXCLUDED_PATHS, DEFAULT_EXCLUDED_PATTERNS, SCHEMA } from './config';
+import { DEFAULT_EXCLUDED_PATHS, DEFAULT_EXCLUDED_PATTERNS, DEFAULT_LOG_FILE, SCHEMA } from './config';
 import getAllFiles from './utils/getAllFiles';
 
 export class UnusedFilesWebpackPlugin {
@@ -11,7 +11,10 @@ export class UnusedFilesWebpackPlugin {
     this.options = {
       failOnUnused: options.failOnUnused || false,
       excludePaths: [...DEFAULT_EXCLUDED_PATHS, ...(options.excludePaths || [])],
-      excludePatterns: [...DEFAULT_EXCLUDED_PATTERNS, ...(options.excludePatterns || [])]
+      excludePatterns: [...DEFAULT_EXCLUDED_PATTERNS, ...(options.excludePatterns || [])],
+      logFile: ((options.logFile && options.logFile !== true) || options.logFile === false)
+        ? options.logFile
+        : DEFAULT_LOG_FILE
     };
   }
 
@@ -26,6 +29,8 @@ export class UnusedFilesWebpackPlugin {
         const unusedFiles = this.getUnusedFiles(compiler, allProjectFiles, usedFiles);
 
         if (unusedFiles.length !== 0) {
+          this.options.logFile && await this.writeFilesToJson(compiler, unusedFiles);
+
           throw new Error(`UnusedFilesWebpackPlugin
 There are some files which was not included in your final bundle, check them out:
 ${unusedFiles.join(`\n`)}`
@@ -73,5 +78,15 @@ ${unusedFiles.join(`\n`)}`
     }
 
     return unusedFiles;
+  }
+
+  async writeFilesToJson(compiler, files) {
+    try {
+      await writeFile(path.join(compiler.context, this.options.logFile), JSON.stringify(files));
+    } catch (error) {
+      if (error) {
+        console.log(error);
+      }
+    }
   }
 }
